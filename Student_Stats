@@ -1,0 +1,71 @@
+import 'dart:io';
+class Student {
+  String name;
+  int age;
+  List<int> grades;
+  int height;
+
+  Student(this.name, this.age, this.grades, this.height);
+
+  void info() {
+    print("Имя студента: $name");
+    print("Возраст студента: $age");
+    print("Оценки студента: $grades");
+    print("Рост студента $height");
+    stdout.writeln();
+  }
+
+  void calculateAverageGrade() {
+    int sum = 0;
+
+    for (int i = 0; i < grades.length; i++) {
+      sum += grades[i];
+    }
+
+    print("Средняя оценка студента: ${sum / grades.length}");
+    stdout.writeln("");
+  }
+
+  void studentRank() {
+    String rank = "";
+    int sum = 0;
+    double midMark = 0;
+
+    for (int i = 0; i < grades.length; i++) {
+      sum += grades[i];
+    }
+    midMark = sum / grades.length;
+
+    if (midMark < 2.5) {
+      print("$name - двоечник");
+      stdout.writeln();
+    } else if (midMark < 3.5 && midMark >= 2.5) {
+      print("$name - троечник");
+      stdout.writeln();
+    } else if (midMark < 4.5 && midMark >= 3.5) {
+      print("$name - хорошист");
+      stdout.writeln();
+    } else if (midMark >= 4.5){
+      print("$name - отличник");
+      stdout.writeln();
+    }
+  }
+}
+
+void main() {
+  Student student1 = Student("Mark", 20, [3, 4, 5, 4, 5], 180);
+  Student student2 = Student("Alice", 21, [5, 4, 5, 5, 5], 168);
+  Student student3 = Student("George", 19, [3, 2, 4, 4, 2], 178);
+
+  student1.info();
+  student2.info();
+  student3.info();
+
+  student1.calculateAverageGrade();
+  student2.calculateAverageGrade();
+  student3.calculateAverageGrade();
+
+  student1.studentRank();
+  student2.studentRank();
+  student3.studentRank();
+}
