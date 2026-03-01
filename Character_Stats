@@ -1,0 +1,52 @@
+class Character {
+  // Свойства класса
+  String name = "";
+  int hp = 1;
+  int attack = 1;
+  int defence = 1;
+
+  // Конструктор
+  Character(this.name, this.hp, this.attack, this.defence);
+
+  void showStats() {
+    print("Name: $name");
+    print("Hp: $hp");
+    print("Attack: $attack");
+    print("Defence: $defence");
+  }
+
+  void dealDamage(Character target) {
+    int damage = attack - target.defence;
+    if (damage <= 0) damage = 0;
+    target.hp -= damage;
+
+    if (target.hp <= 0) {
+      print("${target.name} повержен!");
+    } else {
+      print("$name наносит ${target.name} $damage единиц урона. У ${target.name} осталось ${target.hp} единиц здоровья.");
+    }
+  }
+
+  void levelUp() {
+    print("Поздравляем, $name, уровень повышен!");
+    hp += 10;
+    attack += 5;
+    defence += 2;
+  }
+}
+
+void main() {
+  Character player = Character("Геральт из Ривии", 100, 20, 10);
+  Character monster1 = Character("Леший из Лихолесья", 50, 12, 8);
+  Character monster2 = Character("Злобный Бобр", 2000, 50, 1);
+
+  player.dealDamage(monster1);
+  player.dealDamage(monster1);
+  monster1.dealDamage(player);
+  player.dealDamage(monster1);
+  player.dealDamage(monster1);
+  player.dealDamage(monster1);
+
+  player.levelUp();
+  player.showStats();
+}
